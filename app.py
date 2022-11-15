@@ -18,7 +18,7 @@ api_base_url = "https://api.stagingv3.microgen.id/query/api/v1/" + api_key
 def metricscpu():
     d=str(datetime.datetime.now())
     p='%Y-%m-%d %H:%M:%S.%f'
-    e = int(time.mktime(time.strptime(d,p)))
+    e = int(time.mktime(time.strptime(d,p))) - 3600
     x = str(e)
     url="http://10.10.65.1:8080/api/v1/clusters/sapujagad/hosts/sapujagad-master01.kayangan.com?fields=metrics/cpu&_="+x+""
     username = "sapujagad"
