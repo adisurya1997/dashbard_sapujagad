@@ -14,7 +14,7 @@ if api_key == "":
 
 api_base_url = "https://api.stagingv3.microgen.id/query/api/v1/" + api_key
 
-@app.get("/dashbiard/metrics/cpu")
+@app.get("/dashboard/metrics/cpu")
 def metricscpu():
     d=str(datetime.datetime.now())
     p='%Y-%m-%d %H:%M:%S.%f'
