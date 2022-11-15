@@ -35,7 +35,7 @@ def metricscpu():
     e = int(time.mktime(time.strptime(d,p))) - 3600
     z = str(a)
     x = str(e)
-    url="http://10.10.65.1:8080/api/v1/clusters/sapujagad?fields=metrics/cpu/Nice._avg["+x+","+z+",15],metrics/cpu/System._avg["+x+","+z+",15],metrics/cpu/User._avg["+x+","+z+",15],metrics/cpu/Idle._avg["+x+","+z+",15]&_="+a+""
+    url="http://10.10.65.1:8080/api/v1/clusters/sapujagad?fields=metrics/cpu/Nice._avg["+x+","+z+",15],metrics/cpu/System._avg["+x+","+z+",15],metrics/cpu/User._avg["+x+","+z+",15],metrics/cpu/Idle._avg["+x+","+z+",15]&_="+z+""
     username = "sapujagad"
     password = "kayangan"
     response = requests.get(url, auth=(username, password))
