@@ -62,9 +62,9 @@ def metricsavgcpu():
     test4 = test3.replace("'", '"')  
     # test4 = test3a[:-1]
     # data = json.loads(test4)
-    data = json.loads(test4)
-    return jsonify(data)
-#     return (test4)
+#     data = json.loads(test4)
+#     return jsonify(data)
+    return (test4)
     
 
 
