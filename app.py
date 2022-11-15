@@ -28,7 +28,7 @@ def metricscpu():
     return response.json()
 
 @app.get("/dashboard/metrics/avgcpu")
-def metricscpu():
+def metricsavgcpu():
     d=str(datetime.datetime.now())
     p='%Y-%m-%d %H:%M:%S.%f'
     a = int(time.mktime(time.strptime(d,p)))
