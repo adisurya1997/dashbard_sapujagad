@@ -57,6 +57,36 @@ def metricsavgnetwork():
     # print(response.status_code)
     return response.json()
 
+@app.get("/dashboard/metrics/clusterload")
+def metricsclusterload():
+    d=str(datetime.datetime.now())
+    p='%Y-%m-%d %H:%M:%S.%f'
+    a = int(time.mktime(time.strptime(d,p)))
+    e = int(time.mktime(time.strptime(d,p))) - 3600
+    z = str(a)
+    x = str(e)
+    url="http://10.10.65.1:8080/api/v1/clusters/sapujagad/?fields=metrics/load/1-min._avg["+x+","+z+",15],metrics/load/CPUs._avg["+x+","+z+",15],metrics/load/Nodes._avg["+x+","+z+",15],metrics/load/Procs._avg["+x+","+z+",15]&_="+z+""
+    username = "sapujagad"
+    password = "kayangan"
+    response = requests.get(url, auth=(username, password))
+    # print(response.status_code)
+    return response.json()
+
+
+@app.get("/dashboard/metrics/avgmemoryusage")
+def metricsavgmemoryusage():
+    d=str(datetime.datetime.now())
+    p='%Y-%m-%d %H:%M:%S.%f'
+    a = int(time.mktime(time.strptime(d,p)))
+    e = int(time.mktime(time.strptime(d,p))) - 3600
+    z = str(a)
+    x = str(e)
+    url="http://10.10.65.1:8080/api/v1/clusters/sapujagad/?fields=metrics/memory/Buffer._avg["+x+","+z+",15],metrics/memory/Cache._avg["+x+","+z+",15],metrics/memory/Share._avg["+x+","+z+",15],metrics/memory/Swap._avg["+x+","+z+",15],metrics/memory/Total._avg["+x+","+z+",15],metrics/memory/Use._avg["+x+","+z+",15]&_="+z+""
+    username = "sapujagad"
+    password = "kayangan"
+    response = requests.get(url, auth=(username, password))
+    # print(response.status_code)
+    return response.json()
 
 # @app.get("/dashboard/metrics/avgcpu")
 # def metricsavgcpu():
