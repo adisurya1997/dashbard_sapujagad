@@ -42,6 +42,21 @@ def metricsavgcpu():
     # print(response.status_code)
     return response.json()
 
+@app.get("/dashboard/metrics/avgnetwork")
+def metricsavgnetwork():
+    d=str(datetime.datetime.now())
+    p='%Y-%m-%d %H:%M:%S.%f'
+    a = int(time.mktime(time.strptime(d,p)))
+    e = int(time.mktime(time.strptime(d,p))) - 3600
+    z = str(a)
+    x = str(e)
+    url="http://10.10.65.1:8080/api/v1/clusters/sapujagad/?fields=metrics/network/In._avg["+x+","+z+",15],metrics/network/Out._avg["+x+","+z+",15]&_="+z+""
+    username = "sapujagad"
+    password = "kayangan"
+    response = requests.get(url, auth=(username, password))
+    # print(response.status_code)
+    return response.json()
+
 
 # @app.get("/dashboard/metrics/avgcpu")
 # def metricsavgcpu():
