@@ -118,6 +118,21 @@ def heatmaps():
         
     return dict_obj
 
+@app.get("/heatmets/yarn/totalallocatableram")
+def totalallocatableram():
+    d=str(datetime.datetime.now())
+    p='%Y-%m-%d %H:%M:%S.%f'
+    a = int(time.mktime(time.strptime(d,p)))
+    z = str(a)
+    url="http://10.10.65.1:8080/api/v1/clusters/sapujagad/services/YARN/components/NODEMANAGER?fields=host_components/metrics/yarn/AllocatedGB,host_components/metrics/yarn/AvailableGB&format=null_padding&_="+z+""
+    username = "sapujagad"
+    password = "kayangan"
+    response = requests.get(url, auth=(username, password))
+    # print(response.status_code)
+    return response.json()
+
+
+
 # @app.get("/dashboard/metrics/avgcpu")
 # def metricsavgcpu():
 #     d=str(datetime.datetime.now())
