@@ -14,6 +14,14 @@ if api_key == "":
 
 api_base_url = "https://api.stagingv3.microgen.id/query/api/v1/" + api_key
 
+class my_dictionary(dict):
+    def __init__(self):
+        self = dict()
+
+    # Function to add key:value
+    def add(self, key, value):
+        self[key] = value
+
 @app.get("/dashboard/metrics/cpu")
 def metricscpu():
     d=str(datetime.datetime.now())
@@ -87,6 +95,28 @@ def metricsavgmemoryusage():
     response = requests.get(url, auth=(username, password))
     # print(response.status_code)
     return response.json()
+
+@app.get("/heatmaps")
+def heatmaps():
+    url = 'http://10.10.65.1:8080/api/v1/clusters/sapujagad/hosts?fields=metrics/disk/disk_free,metrics/disk/disk_total,metrics/load/load_one&minimal_response=true&page_size=100&from=0'
+    username = "sapujagad"
+    password = "kayangan"
+    response = requests.get(url, auth=(username, password))
+    x = response.json()
+    a = x['items']
+    # [0]['Hosts']['host_name']
+    
+    n=len(a)
+    dict_obj = my_dictionary()   
+    for  user in a:
+        for i in range(0, n):
+            dict_obj.add(i,user['Hosts']['host_name'])
+    # udin = list(a)   
+    
+    # __init__ function
+
+        
+    return dict_obj
 
 # @app.get("/dashboard/metrics/avgcpu")
 # def metricsavgcpu():
