@@ -96,27 +96,27 @@ def metricsavgmemoryusage():
     # print(response.status_code)
     return response.json()
 
-@app.get("/heatmaps")
-def heatmaps():
-    url = 'http://10.10.65.1:8080/api/v1/clusters/sapujagad/hosts?fields=metrics/disk/disk_free,metrics/disk/disk_total,metrics/load/load_one&minimal_response=true&page_size=100&from=0'
-    username = "sapujagad"
-    password = "kayangan"
-    response = requests.get(url, auth=(username, password))
-    x = response.json()
-    a = x['items']
-    # [0]['Hosts']['host_name']
+# @app.get("/heatmaps")
+# def heatmaps():
+#     url = 'http://10.10.65.1:8080/api/v1/clusters/sapujagad/hosts?fields=metrics/disk/disk_free,metrics/disk/disk_total,metrics/load/load_one&minimal_response=true&page_size=100&from=0'
+#     username = "sapujagad"
+#     password = "kayangan"
+#     response = requests.get(url, auth=(username, password))
+#     x = response.json()
+#     a = x['items']
+#     # [0]['Hosts']['host_name']
     
-    n=len(a)
-    dict_obj = my_dictionary()   
-    for  user in a:
-        for i in range(0, n):
-            dict_obj.add(i,user['Hosts']['host_name'])
-    # udin = list(a)   
+#     n=len(a)
+#     dict_obj = my_dictionary()   
+#     for  user in a:
+#         for i in range(0, n):
+#             dict_obj.add(i,user['Hosts']['host_name'])
+#     # udin = list(a)   
     
-    # __init__ function
+#     # __init__ function
 
         
-    return dict_obj
+#     return dict_obj
 
 @app.get("/heatmets/yarn/totalallocatableram")
 def totalallocatableram():
@@ -131,6 +131,19 @@ def totalallocatableram():
     # print(response.status_code)
     return response.json()
 
+@app.get("/heatmaps")
+def heatmaps():
+    d=str(datetime.datetime.now())
+    p='%Y-%m-%d %H:%M:%S.%f'
+    a = int(time.mktime(time.strptime(d,p)))
+    z = str(a)
+    url = 'http://10.10.65.1:8080/api/v1/clusters/sapujagad/hosts?fields=Hosts/rack_info,Hosts/host_name,Hosts/maintenance_state,Hosts/public_host_name,Hosts/cpu_count,Hosts/ph_cpu_count,alerts_summary,Hosts/host_status,Hosts/host_state,Hosts/last_heartbeat_time,Hosts/ip,host_components/HostRoles/state,host_components/HostRoles/maintenance_state,host_components/HostRoles/stale_configs,host_components/HostRoles/service_name,host_components/HostRoles/display_name,host_components/HostRoles/desired_admin_state,host_components/metrics/dfs/namenode/ClusterId,host_components/metrics/dfs/FSNamesystem/HAState,Hosts/total_mem,stack_versions/HostStackVersions,stack_versions/repository_versions/RepositoryVersions/repository_version,stack_versions/repository_versions/RepositoryVersions/id,stack_versions/repository_versions/RepositoryVersions/display_name&minimal_response=true,host_components/logging&page_size=100&from=0&sortBy=Hosts/host_name.asc&_="+z+"'
+    username = "sapujagad"
+    password = "kayangan"
+    response = requests.get(url, auth=(username, password))
+    x = response.json()
+    a = x['items']
+    return a 
 
 
 # @app.get("/dashboard/metrics/avgcpu")
